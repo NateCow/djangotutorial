@@ -6,7 +6,7 @@ from django.db import models
 # From Django documentation:
 # must be a mapping of actual values to human readable names or an iterable containing (actual value, human readable name) tuples.
 
-# Should thinkg about what the actual values should be here. List of years should probably be its own list then.
+# Should think about what the actual values should be here. List of years should probably be its own list then.
 COMP_NAMES = (
     (2002, "LCC"),
     (2004, "LCC 2.5"),
