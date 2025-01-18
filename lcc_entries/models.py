@@ -8,15 +8,15 @@ from django.db import models
 
 # Should think about what the actual values should be here. List of years should probably be its own list then.
 COMP_NAMES = (
-    ("LCC1", "Lightsaber Choreography Competition"),
-    ("LCC2", "Lightsaber Choreography Competition 2.5"),
-    ("LCC3", "Lightsaber Choreography Contest III"),
-    ("LCC4", "Lightsaber Choreography Competition IV"),
-    ("LCC5", "Lightsaber Choreography Contest V"),
-    ("LCC6", "Lightsaber Choreography Contest VI"),
-    ("LCC7", "Lightsaber Choreography Contest VII"), # Previously just LCC
-    ("LCC8", "Lightsaber Choreography Competition VIII"),
-    ("LCC9", "Lightsaber Choreography Competition IX"), # Previously just LCC
+    ("LCC01", "Lightsaber Choreography Competition"),
+    ("LCC02", "Lightsaber Choreography Competition 2.5"),
+    ("LCC03", "Lightsaber Choreography Contest III"),
+    ("LCC04", "Lightsaber Choreography Competition IV"),
+    ("LCC05", "Lightsaber Choreography Contest V"),
+    ("LCC06", "Lightsaber Choreography Contest VI"),
+    ("LCC07", "Lightsaber Choreography Contest VII"), # Previously just LCC
+    ("LCC08", "Lightsaber Choreography Competition VIII"),
+    ("LCC09", "Lightsaber Choreography Competition IX"), # Previously just LCC
     ("LCC10", "Lightsaber Choreography Competition X"),
     ("LCC11", "Lightsaber Choreography Contest XI"),
     ("LCC12", "Lightsaber Choreography Contest XII"), # Previously just LCC
@@ -33,15 +33,15 @@ COMP_NAMES = (
 )
 
 COMP_YEARS = (
-    ("LCC1", 2002),
-    ("LCC2", 2004), # 2003-2004
-    ("LCC3", 2004), # 2004-2005
-    ("LCC4", 2005),
-    ("LCC5", 2007),
-    ("LCC6", 2008),
-    ("LCC7", 2009),
-    ("LCC8", 2010),
-    ("LCC9", 2011),
+    ("LCC01", 2002),
+    ("LCC02", 2004), # 2003-2004
+    ("LCC03", 2004), # 2004-2005
+    ("LCC04", 2005),
+    ("LCC05", 2007),
+    ("LCC06", 2008),
+    ("LCC07", 2009),
+    ("LCC08", 2010),
+    ("LCC09", 2011),
     ("LCC10", 2012),
     ("LCC11", 2013),
     ("LCC12", 2014),
