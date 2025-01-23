@@ -5,18 +5,19 @@ from .models import LCCEntry, LCCCreator, LCCComp
 # Register your models here.
 
 class LCCEntryAdmin(admin.ModelAdmin):
-    list_display = ('title', 'competition_name', 'competition_year', 'creator', 'production_company')
-    readonly_fields = ('competition_year',)
-    
-    def competition_year(self, obj):
-        return obj.competition_year()
-    competition_year.short_description = 'Competition Year'
+    list_display = ('title', 'get_competition_name_display', 'creator', 'production_company')
+
+    def get_competition_name_display(self, obj):
+        return obj.get_competition_name_display()
+    get_competition_name_display.short_description = 'Competition Name'
+
+   
 
 class LCCCreatorAdmin(admin.ModelAdmin):
     list_display = ('name', )
 
 class LCCCompAdmin(admin.ModelAdmin):
-    list_display = ('name', 'year')
+    list_display = ('name', 'theme', 'year')
     
 
 admin.site.register(LCCEntry, LCCEntryAdmin)
