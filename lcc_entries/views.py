@@ -23,9 +23,11 @@ def entry(request, comp_name, slug):
     try:
         comp_full_name = LCCComp.objects.get(name=comp_name)
         entry = LCCEntry.objects.get(competition_name=comp_full_name, slug=slug)
+        same_creator_entries = LCCEntry.objects.filter(creator=entry.creator).exclude(id=entry.id)
         context = {
             "entry": entry,
             "comp_full_name": comp_full_name,
+            "same_creator_entries": same_creator_entries,
         }
         return render(request, "lcc_entries/entry.html", context)
     except (LCCComp.DoesNotExist, LCCEntry.DoesNotExist):

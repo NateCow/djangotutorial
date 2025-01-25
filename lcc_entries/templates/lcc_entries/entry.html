@@ -15,5 +15,13 @@
     </p>
     {% load custom_filters %}
     <iframe width="560" height="315" src="{{ entry.youtube_link|youtube_embed }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <h2>Other Entries by {{ entry.creator.name }}</h2>
+    <ul>
+        {% for other_entry in same_creator_entries %}
+            <li>
+                <a href="{% url 'lcc_entries:entry' comp_name=other_entry.competition_name.name slug=other_entry.slug %}">{{ other_entry.title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
 </body>
 </html>
