@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poll Questions</title>
+</head>
+<body>
+    
+    {% if latest_question_list %}
+        <ul>
+            {% for question in latest_question_list %}
+                <li><a href="/polls/{{ question.id }}/">{{ question.question_text }}</a></li> <!-- Partially hard coded. No. -->
+                <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li> <!-- This is the same as the line above, but better. -->
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No polls are available.</p>
+    {% endif %}
+
+</body>
+</html>

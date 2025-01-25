@@ -17,7 +17,7 @@ class LCCCreatorAdmin(admin.ModelAdmin):
     list_display = ('name', )
 
 class LCCCompAdmin(admin.ModelAdmin):
-    list_display = ('name', 'theme', 'year')
+    list_display = ('name', 'theme', 'year',)
     
 
 admin.site.register(LCCEntry, LCCEntryAdmin)

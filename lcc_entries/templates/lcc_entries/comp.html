@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ comp_full_name }}</title>
+</head>
+<body>
+    <h1>{{ comp_full_name }}</h1>
+    <ul>
+        {% for entry in current_comp_entries %}
+            <li>
+                <a href="{% url 'lcc_entries:entry' comp_name=comp_full_name.name slug=entry.slug %}">{{ entry.title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

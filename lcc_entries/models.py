@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
+from django.utils.text import slugify
 
 # Define your choices
 COMP_NAMES = (
@@ -82,7 +83,9 @@ class LCCComp(models.Model):
     # year = models.CharField(choices=COMP_YEARS, max_length=200, unique=True)
     year = models.IntegerField(default=2020)
     start_date = models.DateField(default="2020-05-04")
-    end_date = models.DateField(default="2020-12-31")
+    open_submissions = models.DateField(default="2021-01-01")
+    deadline = models.DateField(default="2021-01-31")
+    # end_date = models.DateField(default="2020-12-31")
     theme = models.CharField(max_length=200, blank=True, null=True, default="")
     rules = models.TextField(default="No rules. (This is a default value)", max_length=2000)
     announcment_promo = models.URLField(blank=True, null=True, default="http://", max_length=200)
@@ -116,6 +119,7 @@ class LCCCreator(models.Model):
 
 class LCCEntry(models.Model):
     title = models.CharField(max_length=200, default="Untitled")
+    slug = models.SlugField(max_length=200, unique=True, blank=True, null=True)
     status = models.CharField(max_length=200, choices=ENTRY_STATUS, default="Pending Review")
     content_type = models.CharField(max_length=200, choices=CONTENT_TYPE, default="LCC-SC")
     top_10 = models.BooleanField(default=False)
@@ -133,3 +137,8 @@ class LCCEntry(models.Model):
     class Meta:
         verbose_name = "LCC Entry"
         verbose_name_plural = "LCC Entries"
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super(LCCEntry, self).save(*args, **kwargs)

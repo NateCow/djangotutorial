@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LCC Archive</title>
+</head>
+<body>
+    {% if all_comps %}
+        <ul>
+            {% for comp in all_comps %}
+                <li><a href="/lcc_entries/{{ comp.name }}/">{{ comp }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No compeitions are available.</p>
+    {% endif %}
+</body>
+</html>

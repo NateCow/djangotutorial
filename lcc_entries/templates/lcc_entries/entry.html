@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ entry.title }}</title>
+</head>
+<body>
+    <h1>{{ entry.title }}</h1>
+    <p>
+        Created by: {{ entry.creator.name }}
+        {% if entry.production_company %}
+            | {{ entry.production_company }}
+        {% endif %}
+    </p>
+    {% load custom_filters %}
+    <iframe width="560" height="315" src="{{ entry.youtube_link|youtube_embed }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</body>
+</html>
