@@ -37,7 +37,7 @@ def creator(request, creator_name):
     return HttpResponse(f"This is the page for {creator_name}!")
 
 def search(request):
-    return HttpResponse("This is the search page!")
+    return render(request, "lcc_entries/search.html")
 
 def about(request):
-    return HttpResponse("This is the about page!")
+    return render(request, "lcc_entries/about.html")

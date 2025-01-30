@@ -88,9 +88,9 @@ class LCCComp(models.Model):
     # end_date = models.DateField(default="2020-12-31")
     theme = models.CharField(max_length=200, blank=True, null=True, default="")
     rules = models.TextField(default="No rules. (This is a default value)", max_length=2000)
-    announcment_promo = models.URLField(blank=True, null=True, default="http://", max_length=200)
-    live_judging = models.URLField(blank=True, null=True, default="http://", max_length=200)
-    highlight_reel = models.URLField(blank=True, null=True, default="http://", max_length=200)
+    announcment_promo = models.URLField(blank=True, null=True, default="", max_length=200)
+    live_judging = models.URLField(blank=True, null=True, default="", max_length=200)
+    highlight_reel = models.URLField(blank=True, null=True, default="", max_length=200)
     
     def __str__(self):
         return self.get_name_display()
@@ -115,6 +115,35 @@ class LCCCreator(models.Model):
     class Meta:
         verbose_name = "LCC Creator"
         verbose_name_plural = "LCC Creators"
+
+    def get_entries(self):
+        return LCCEntry.objects.filter(creator=self)
+
+class LCCCompany(models.Model):
+    company_name = models.CharField(max_length=200)
+    company_url = models.URLField(max_length=200 , blank=True, null=True)
+    owner = models.ForeignKey(LCCCreator, related_name="companies", on_delete=models.CASCADE, blank=True, null=True)
+
+    def __str__(self):
+        return self.company_name
+    
+    class Meta:
+        verbose_name = "Company"
+        verbose_name_plural = "Companies"
+
+    def get_entries(self):
+        return LCCEntry.objects.filter(creator=self)
+
+class CrewRole(models.Model):
+    role = models.CharField(max_length=200)
+    description = models.TextField(max_length=2000, blank=True, null=True)
+
+    def __str__(self):
+        return self.role
+    
+    class Meta:
+        verbose_name = "Crew Role"
+        verbose_name_plural = "Crew Roles"
     
 
 class LCCEntry(models.Model):
@@ -127,6 +156,7 @@ class LCCEntry(models.Model):
     competition_name = models.ForeignKey(LCCComp, to_field='name', related_name="entries_by_name", on_delete=models.CASCADE)
     creator = models.ForeignKey(LCCCreator, related_name="entries", on_delete=models.CASCADE)
     production_company = models.CharField(blank=True, null=True, max_length=200)
+    company_new = models.ForeignKey(LCCCompany, related_name="entries", on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return self.title

@@ -6,6 +6,13 @@
     <title>{{ entry.title }}</title>
 </head>
 <body>
+    <nav>
+        <ul>
+            <li><a href="{% url 'lcc_entries:index' %}">Home</a></li>
+            <li><a href="{% url 'lcc_entries:about' %}">About</a></li>
+            <li><a href="{% url 'lcc_entries:search' %}">Search</a></li>
+        </ul>
+    </nav>
     <h1>{{ entry.title }}</h1>
     <p>
         Created by: {{ entry.creator.name }}

@@ -6,6 +6,13 @@
     <title>{{ comp_full_name }}</title>
 </head>
 <body>
+    <nav>
+        <ul>
+            <li><a href="{% url 'lcc_entries:index' %}">Home</a></li>
+            <li><a href="{% url 'lcc_entries:about' %}">About</a></li>
+            <li><a href="{% url 'lcc_entries:search' %}">Search</a></li>
+        </ul>
+    </nav>
     <h1>{{ comp_full_name }}</h1>
     <ul>
         {% for entry in current_comp_entries %}

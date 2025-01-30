@@ -6,14 +6,22 @@
     <title>LCC Archive</title>
 </head>
 <body>
+    <nav>
+        <ul>
+            <li><a href="{% url 'lcc_entries:index' %}">Home</a></li>
+            <li><a href="{% url 'lcc_entries:about' %}">About</a></li>
+            <li><a href="{% url 'lcc_entries:search' %}">Search</a></li>
+        </ul>
+    </nav>
+
     {% if all_comps %}
         <ul>
             {% for comp in all_comps %}
-                <li><a href="/lcc_entries/{{ comp.name }}/">{{ comp }}</a></li>
+                <li><a href="{% url 'lcc_entries:comp' comp.name %}">{{ comp }}</a></li>
             {% endfor %}
         </ul>
     {% else %}
-        <p>No compeitions are available.</p>
+        <p>No competitions are available.</p>
     {% endif %}
 </body>
 </html>
