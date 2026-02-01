@@ -29,6 +29,12 @@ COMP_NAMES = (
     ("SC24", "SaberComp 2024"),
 )
 
+# All these dictionary things for Names and Years is overly complicated.
+# The real SaberComp archive should just have a normal Compeition model where we will
+# specify the name, year, and a short-code to reference in the URLs.
+# That way, we won't be hard-coding things into the models.py file.
+
+
 COMP_YEARS = {
     "LCC01": 2002,
     "LCC02": 2004,
@@ -108,6 +114,7 @@ class LCCComp(models.Model):
 
 class LCCCreator(models.Model):
     name = models.CharField(max_length=200)
+    slug = models.SlugField(max_length=200, unique=True, blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -118,9 +125,15 @@ class LCCCreator(models.Model):
 
     def get_entries(self):
         return LCCEntry.objects.filter(creator=self)
+    
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super(LCCCreator, self).save(*args, **kwargs)
 
 class LCCCompany(models.Model):
     company_name = models.CharField(max_length=200)
+    slug = models.SlugField(max_length=200, unique=True, blank=True, null=True)
     company_url = models.URLField(max_length=200 , blank=True, null=True)
     owner = models.ForeignKey(LCCCreator, related_name="companies", on_delete=models.CASCADE, blank=True, null=True)
 
@@ -133,6 +146,11 @@ class LCCCompany(models.Model):
 
     def get_entries(self):
         return LCCEntry.objects.filter(creator=self)
+    
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.company_name)
+        super(LCCCompany, self).save(*args, **kwargs)
 
 class CrewRole(models.Model):
     role = models.CharField(max_length=200)
